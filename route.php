@@ -22,7 +22,8 @@ switch ($params[0]) {
         break;
     case 'delete':
         $id = $params[1];
-        delete($id);
+        $controller = new movieController();
+        $controller->deleteMovie($id);
         break;
     case 'agregar':
         break;

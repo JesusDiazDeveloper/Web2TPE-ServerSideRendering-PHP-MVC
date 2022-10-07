@@ -1,16 +1,6 @@
 <?php
 require_once('app/db.php');
 
-
-
-function delete($id){
-    require_once('templates/header.php');
-    deleteById($id);
-    echo '<h2>El item se ha eliminado</h2>';
-    echo '<button type="submit " href="home">Continuar</button>;';
-    require_once('templates/footer.php');
-}
-
 function modificar(){
     // function showOneItemForModify($id){
     //     $item = getItem($id);

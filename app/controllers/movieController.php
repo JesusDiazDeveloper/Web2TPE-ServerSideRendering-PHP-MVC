@@ -22,4 +22,8 @@ function showAllMovies()
     //actualizo la vista
     $this->view->showMovies($movies);
 }
+function deleteMovie($id){
+    $this->model->deleteById($id);
+    $this->showAllMovies();
+}
 }
