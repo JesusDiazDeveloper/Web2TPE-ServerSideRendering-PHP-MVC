@@ -1,6 +1,7 @@
 <?php
 include_once 'app/models/MovieModel.php';
-include_once 'app/views/MovieView.php';
+include_once 'app/models/GenreModel.php';
+include_once 'app/views/View.php';
 
 
 class movieController {
@@ -10,7 +11,7 @@ class movieController {
     function __construct()
     {
         $this->model=new MovieModel();      
-        $this->view=new MovieView();      
+        $this->view=new View();      
     }
 
     
@@ -22,8 +23,10 @@ function showAllMovies()
     //actualizo la vista
     $this->view->showMovies($movies);
 }
+
 function deleteMovie($id){
-    $this->model->deleteById($id);
+    $id = $this->model->deleteById($id);
     $this->showAllMovies();
+    
 }
 }

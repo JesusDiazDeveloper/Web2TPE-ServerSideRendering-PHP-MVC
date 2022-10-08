@@ -1,6 +1,6 @@
 <?php
 include_once 'app/controllers/movieController.php';
-require_once "functions.php";
+
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
 // lee la acción
@@ -18,14 +18,16 @@ switch ($params[0]) {
         break;
     case 'login':
         break;
-    case 'generos':
+    case 'genres':
         break;
     case 'delete':
         $id = $params[1];
         $controller = new movieController();
         $controller->deleteMovie($id);
         break;
-    case 'agregar':
+    case 'add':
+        $controller = new movieController();
+        $controller->addMenu();
         break;
     default:
         echo ('404 Page not found');

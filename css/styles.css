@@ -1,3 +1,13 @@
-.movieImg {
+*{
+    color: white;
+}
+.container{
+    background-color: black;
+}
+
+.movieImg{
     max-height: 8em;
+}
+.tituloDelSitio{
+    color: rgb(56, 56, 255);
 }
