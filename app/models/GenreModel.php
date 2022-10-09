@@ -8,7 +8,7 @@ function getDB(){
     return $db;
 }
 
-function getAllGenres(){
+function getAll(){
     //abro la conexion a la db
     $db = $this->getDB();
 

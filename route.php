@@ -1,5 +1,6 @@
 <?php
 include_once 'app/controllers/movieController.php';
+include_once 'app/controllers/GenreController.php';
 
 define('BASE_URL', '//' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']) . '/');
 
@@ -25,20 +26,27 @@ switch ($params[0]) {
         $controller = new movieController();
         $controller->deleteMovie($id);
         break;
-    case 'add':
+    case 'addNew':
         $controller = new movieController();
+        $controller->addNew();
+        break;
+    case 'add':
+        $controller = new GenreController();
         $controller->addMenu();
+        break;
+    case 'modify':
+        $controller = new movieController;
+        $genreController = new GenreController;
+        $id = $params[1];
+        $genres = $genreController->getGenres();
+        $controller->showOneItemForModify($id,$genres);
+        break;
+    case 'modified':
+        $controller = new movieController;
+        $id = $params[1];
+        $controller->modifyItem($id);
         break;
     default:
         echo ('404 Page not found');
         break;
 }
-
-            // case 'modify':
-            //     $id = $params[1];
-            //     showOneItemForModify($id);
-            //     break;
-            // case 'modified':
-            //     $id = $params[1];
-            //     modifyItem($id);
-            //     break;

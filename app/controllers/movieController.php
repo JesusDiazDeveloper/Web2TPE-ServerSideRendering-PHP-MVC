@@ -29,4 +29,52 @@ function deleteMovie($id){
     $this->showAllMovies();
     
 }
+function addNew(){
+    if(!empty($_POST['name'])&&!empty($_POST['image'])&&!empty($_POST['length'])
+    &&!empty($_POST['director'])&&!empty($_POST['fk_genre_id'])){
+    $name= $_POST['name'];
+    $image = $_POST['image'];
+    $length = $_POST['length'];
+    $director =$_POST['director'];
+    $genre = $_POST['fk_genre_id'];
+
+        
+    $this->model->addNew($name,$image,$length,$director,$genre);
+    $this->showAllMovies();
+    }
+    else{
+        echo "Show Error Tengo que terminarlo... ";
+    }
+}
+function showOneItemForModify($id,$genres){
+    //falta if
+    $movie = $this->model->getOneItem($id);
+    // var_dump($movie);
+    $this->view->formModify($movie,$genres);
+
+}
+function modifyItem($id){
+    
+
+    if(!empty($id)&&!empty($_POST['name'])&&!empty($_POST['image'])&&!empty($_POST['length'])
+    &&!empty($_POST['director'])&&!empty($_POST['fk_genre_id'])){
+        $name= $_POST['name'];
+    $image = $_POST['image'];
+    $length = $_POST['length'];
+    $director =$_POST['director'];
+    $genre = $_POST['fk_genre_id'];
+
+        
+    $result= $this->model->modifyItem($id, $name,$image,$length,$director,$genre);
+    $this->showAllMovies();
+    // echo $result;
+    // if(!empty($result)){
+    //     $this->view->successMessage();
+    // }
+    // else{
+    //     $this->view->showError();
+    // }
+    }
+
+}   
 }

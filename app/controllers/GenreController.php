@@ -7,20 +7,23 @@ class GenreController {
     private $model;
     private $view;
 
-    function __construct()
-    {
+    function __construct(){
         $this->model=new GenreModel();      
         $this->view=new View();      
     }
 
 //Mostrar todos los generos.
-function showAllGenres()
-{
+function getAll(){
     //obtiene las tareas del modelo
-    $genres = $this->model->getAllGenres();
-
-    //actualizo la vista FALTA HACER.
-    // $this->view->showGenres($genres);
+    $genres = $this->model->getAll();
+    return $genres;
 }
-
+function addMenu(){
+    $genres = $this->getAll();
+    $this->view->showAdd($genres);
+}
+function getGenres(){
+    $genres = $this->getAll();
+    return $genres;
+}
 }

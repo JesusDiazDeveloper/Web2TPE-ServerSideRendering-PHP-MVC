@@ -7,18 +7,31 @@ class View{
     function __construct()
     {
         $this->smarty= new Smarty (); 
-        $this->smarty->assign('BASE_URL', BASE_URL);
     }
 
     function showMovies($movies){
         
-        $this->smarty->assign('movies', $movies);
-        $this->smarty->display('templates/header.tpl');
+        $this->smarty->assign('movies', $movies);        
         $this->smarty->display('templates/showAllMovies.tpl');
-        $this->smarty->display('templates/footer.tpl');
     }
-    function showAddMenuForm(){
-        
+    function showAdd($genres){
+        $this->smarty->assign('genres',$genres);        
+        $this->smarty->display('templates/addMenu.tpl');
+    }
+    
+    function formModify($movie , $genres){
+        $this->smarty->assign('movie',$movie);
+        $this->smarty->assign('genres',$genres);
+        // var_dump($movie);
+        $this->smarty->display('templates/formModify.tpl');
+    }
+
+    function showError(){
+        echo "funcion Error";
+    }
+    function successMessage(){
+        $this->smarty->display("templates/header");
+        echo "Lo que hizo fue exitoso.";
     }
 }
 
