@@ -25,13 +25,20 @@ class View{
         // var_dump($movie);
         $this->smarty->display('templates/formModify.tpl');
     }
-
+    function showSearchPage($genres){
+        $this->smarty->assign('genres', $genres);
+        $this->smarty->display('templates/searchPage.tpl');
+    }
     function showError(){
         echo "funcion Error";
     }
     function successMessage(){
         $this->smarty->display("templates/header");
         echo "Lo que hizo fue exitoso.";
+    }
+    function ShowAllMoviesByGenre($moviesByGenre){
+        $this->smarty->assign('movies',$moviesByGenre);
+        $this->smarty->display('templates/showMoviesByGenre.tpl');
     }
 }
 

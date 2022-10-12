@@ -22,8 +22,9 @@ function addMenu(){
     $genres = $this->getAll();
     $this->view->showAdd($genres);
 }
-function getGenres(){
+function showSearchPage(){
     $genres = $this->getAll();
-    return $genres;
+    $this->view->showSearchPage($genres);
 }
+
 }

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-dark ">
             <div class="container-fluid ">
-                <a class="navbar-brand text-white" href="home">Navbar</a>
+                <a class="navbar-brand text-primary" href="home">Peliculas.com</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -13,6 +13,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="login">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="searchMenu">Search</a>
                         </li>
                         <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
