@@ -33,12 +33,19 @@ class View{
         echo "funcion Error";
     }
     function successMessage(){
-        $this->smarty->display("templates/header");
-        echo "Lo que hizo fue exitoso.";
+        $this->smarty->display("templates/successMessage.tpl");
     }
     function ShowAllMoviesByGenre($moviesByGenre){
         $this->smarty->assign('movies',$moviesByGenre);
         $this->smarty->display('templates/showMoviesByGenre.tpl');
+    }
+    function showOneMovie($movie){
+        $this->smarty->assign('movie',$movie);
+        $this->smarty->display('templates/showOneMovie.tpl');
+        
+    }
+    function showFormAddGenre(){
+        $this->smarty->display('templates/FormAddGenre.tpl');
     }
 }
 

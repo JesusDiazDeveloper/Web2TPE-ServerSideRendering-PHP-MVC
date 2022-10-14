@@ -14,7 +14,7 @@ class MovieModel
     function showAll()
     {
 
-        $query = $this->db->prepare("SELECT a.id_movie, a.movieName, a.movieImage,a.movieLength,a.director ,b.name AS genre
+        $query = $this->db->prepare("SELECT a.id_movie, a.movieName, a.movieImage,a.movieLength,a.director ,b.genreName AS genre
     FROM peliculas a
     INNER JOIN genero b
     ON a.fk_genre_id = id_genre");
@@ -42,7 +42,7 @@ class MovieModel
 
     function getOneItem($id)
     {
-        $query = $this->db->prepare("SELECT a.id_movie, a.movieName, a.movieImage,a.movieLength,a.director ,b.name AS genre
+        $query = $this->db->prepare("SELECT a.id_movie, a.movieName, a.movieImage,a.movieLength,a.director ,b.genreName AS genre
     FROM peliculas a
     INNER JOIN genero b
     ON a.fk_genre_id = id_genre WHERE id_movie = ?");
@@ -65,7 +65,7 @@ class MovieModel
     function getAllMoviesByGenre($id)
     {
         $query = $this->db->prepare("SELECT a.id_movie, a.movieName, a.movieImage,
-        a.movieLength,a.director ,b.name AS genre
+        a.movieLength,a.director ,b.genreName AS genre
         FROM peliculas a
         INNER JOIN genero b
         ON a.fk_genre_id = id_genre WHERE fk_genre_id = ?" );

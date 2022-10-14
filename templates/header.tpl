@@ -15,4 +15,5 @@
 <body>
     <div class="container">
     <h1 class="text-center text-white">Bienvenidos a <span class="tituloDelSitio">Peliculas.com</span></h1>
-    {include file = 'navBar.tpl'}   
+    {include file = 'navBar.tpl'} 
+      

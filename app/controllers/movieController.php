@@ -1,24 +1,28 @@
 <?php
-include_once 'app/models/MovieModel.php';
-include_once 'app/models/GenreModel.php';
-include_once 'app/views/View.php';
+require_once 'app/models/MovieModel.php';
+require_once 'app/models/GenreModel.php';
+require_once 'app/views/View.php';
+require_once 'app/helpers/AuthHelper.php';
 
 
 class movieController
 {
     private $model;
     private $view;
+    private $AuthHelper;
 
     function __construct()
     {
         $this->model = new MovieModel();
         $this->view = new View();
-        // $authHelper->checkLoggedIn();
+        $this->AuthHelper = new AuthHelper();
     }
 
 
     function showAllMovies()
     {
+        //Para las hibridas...
+        $this->AuthHelper->askIfThUserIsLoggedIn();
         //obtiene las tareas del modelo
         $movies = $this->model->showAll();
 
@@ -28,11 +32,13 @@ class movieController
 
     function deleteMovie($id)
     {
+        $this->AuthHelper->checkLoggedIn();
         $id = $this->model->deleteById($id);
         $this->showAllMovies();
     }
     function addNew()
     {
+        $this->AuthHelper->checkLoggedIn();
         if (
             !empty($_POST['name']) && !empty($_POST['image']) && !empty($_POST['length'])
             && !empty($_POST['director']) && !empty($_POST['fk_genre_id'])
@@ -52,13 +58,14 @@ class movieController
     }
     function showOneItemForModify($id, $genres)
     {
+        $this->AuthHelper->checkLoggedIn();
         //falta if
         $movie = $this->model->getOneItem($id);
-        // var_dump($movie);
+        // var_dump($genres);
         $this->view->formModify($movie, $genres);
     }
-    function modifyItem($id)
-    {
+    function modifyItem($id){
+        $this->AuthHelper->checkLoggedIn();
         if (!empty($id) && !empty($_POST['name']) && !empty($_POST['image']) && !empty($_POST['length'])
             && !empty($_POST['director']) && !empty($_POST['fk_genre_id'])
         ) {
@@ -80,12 +87,20 @@ class movieController
             // }
         }
     }
-    function getAllMoviesByGenre()
-    {
+    function ShowOne($id){
+        //falta if
+        $movie = $this->model->getOneItem($id);
+        $this->view->showOneMovie($movie);
+
+    }
+    function getAllMoviesByGenre(){
         if (!empty($_POST['id_genre'])) {
             $id = $_POST['id_genre'];
             $moviesByGenre = $this->model->getAllMoviesByGenre($id);
             if(!empty($moviesByGenre)){
+                        //Para las hibridas...
+                $this->AuthHelper->askIfThUserIsLoggedIn();
+
                 $this->view->ShowAllMoviesByGenre($moviesByGenre);
 
             }
@@ -96,4 +111,5 @@ class movieController
             $this->view->showError();
         }
     }
+
 }

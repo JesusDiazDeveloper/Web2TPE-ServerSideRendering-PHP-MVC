@@ -38,7 +38,7 @@
         <select id="inputState" class="form-select" name="fk_genre_id" required >
         {foreach from=$genres item=$genre}
     
-            <option value="{$genre->id_genre}" selected>{$genre->name}</option>
+            <option value="{$genre->id_genre}" selected>{$genre->genreName}</option>
     
         {/foreach}
         </select>
