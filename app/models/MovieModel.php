@@ -58,8 +58,7 @@ class MovieModel
         $id = intval($id);
 
         $query = $this->db->prepare("UPDATE peliculas SET movieName=?,movieImage=?,movieLength=?,director=?,fk_genre_id=? WHERE id_movie=?");
-        $query->execute([$name, $image, $length, $director, $genre, $id]);
-        return $this->db->lastInsertId(); //nos devuelve el id del último elemento insertado
+        return $query->execute([$name, $image, $length, $director, $genre, $id]);
 
     }
     function getAllMoviesByGenre($id)

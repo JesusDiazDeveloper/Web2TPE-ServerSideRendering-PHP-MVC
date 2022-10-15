@@ -2,18 +2,17 @@
 
 class GenreModel{
 
-function getDB(){
-    //guardo la conexion en una variable 
-    $db = new PDO('mysql:host=localhost;'.'dbname=db_movies;charset=utf8', 'root', '');
-    return $db;
-}
+    private $db;
+
+    public function __construct()
+    {
+        $this->db = new PDO('mysql:host=localhost;' . 'dbname=db_movies;charset=utf8', 'root', '');
+    }
+    
 
 function getAll(){
-    //abro la conexion a la db
-    $db = $this->getDB();
-    
     //ejecuto la sentencia en 2 subpasos
-    $query = $db->prepare("SELECT * FROM genero"); 
+    $query = $this->db->prepare("SELECT * FROM genero"); 
     $query->execute();
 
     //obtengo los resultados CON FETCH 
@@ -22,10 +21,59 @@ function getAll(){
 }
 function addNewGenre($name){
 
-        $db = $this->getDB();
-        $query = $db->prepare("INSERT INTO genero (genreName) VALUES (?)");
+        $query = $this->db->prepare("INSERT INTO genero (genreName) VALUES (?)");
         $query->execute([$name]);
         // return $this->db->lastInsertId(); //nos devuelve el id del último elemento insertado
         //Este ultimo no andaba, preguntar porque? 
     }
+    function deleteGenre($id){
+        
+        $query = $this->db->prepare('DELETE FROM genero WHERE id_genre = ?');
+        $query->execute([$id]);
+
+    }
+    function getOneGenre($id)
+    {
+        $query = $this->db->prepare("SELECT * FROM genero a WHERE id_genre = ?");
+        $query->execute([$id]);
+        $result = $query->fetch(PDO::FETCH_OBJ);
+        return $result;
+    }
+    function modifyGenre($id, $name)
+    {
+        $query = $this->db->prepare("UPDATE genero SET genreName=? WHERE id_genre=?");
+        return $query->execute([$name,$id]);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

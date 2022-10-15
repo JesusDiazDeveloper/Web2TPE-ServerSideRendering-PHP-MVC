@@ -43,15 +43,21 @@ class movieController
             !empty($_POST['name']) && !empty($_POST['image']) && !empty($_POST['length'])
             && !empty($_POST['director']) && !empty($_POST['fk_genre_id'])
         ) {
-            $name = $_POST['name'];
-            $image = $_POST['image'];
-            $length = $_POST['length'];
-            $director = $_POST['director'];
-            $genre = $_POST['fk_genre_id'];
-
-
-            $this->model->addNew($name, $image, $length, $director, $genre);
-            $this->showAllMovies();
+            try{
+                $name = $_POST['name'];
+                $image = $_POST['image'];
+                $length = $_POST['length'];
+                $director = $_POST['director'];
+                $genre = $_POST['fk_genre_id'];
+    
+    
+                $this->model->addNew($name, $image, $length, $director, $genre);
+                $this->showAllMovies(); 
+            }
+            catch(Exception){
+                $this->view->showError("Nombre exitente en otra pelicula.");
+            }
+            
         } else {
             echo "Show Error Tengo que terminarlo... ";
         }
@@ -69,31 +75,48 @@ class movieController
         if (!empty($id) && !empty($_POST['name']) && !empty($_POST['image']) && !empty($_POST['length'])
             && !empty($_POST['director']) && !empty($_POST['fk_genre_id'])
         ) {
-            $name = $_POST['name'];
-            $image = $_POST['image'];
-            $length = $_POST['length'];
-            $director = $_POST['director'];
-            $genre = $_POST['fk_genre_id'];
-
-
-            $result = $this->model->modifyItem($id, $name, $image, $length, $director, $genre);
-            $this->showAllMovies();
-            // echo $result;
-            // if(!empty($result)){
-            //     $this->view->successMessage();
-            // }
-            // else{
-            //     $this->view->showError();
-            // }
+            try{
+                $name = $_POST['name'];
+                $image = $_POST['image'];
+                $length = $_POST['length'];
+                $director = $_POST['director'];
+                $genre = $_POST['fk_genre_id'];
+    
+    
+                $result = $this->model->modifyItem($id, $name, $image, $length, $director, $genre);
+                
+                if($result){
+                    $this->view->successMessage("La modificacion se realizo con exito");
+                }
+                else{
+                    $this->view->showError("Ocurrio un error al intentar Modificar la pelicula");
+                }
+            }
+            catch(Exception){
+                $this->view->showError("Nombre exitente en otra pelicula.");
+            }
+        }
+        else{
+            $this->view->showError("Error al modificar la pelicula, faltan datos.");
         }
     }
     function ShowOne($id){
-        //falta if
-        $movie = $this->model->getOneItem($id);
-        $this->view->showOneMovie($movie);
+        if($id){
+            $movie = $this->model->getOneItem($id);
 
+            if($movie){
+                $this->view->showOneMovie($movie);
+            }
+            else{
+                $this->view->showError("Pelicula no encontrada");
+            }
+        }
+        else{
+            $this->view->showError("Error al intentar buscar pelicula.");
+        }
     }
     function getAllMoviesByGenre(){
+        $this->AuthHelper->askIfThUserIsLoggedIn();
         if (!empty($_POST['id_genre'])) {
             $id = $_POST['id_genre'];
             $moviesByGenre = $this->model->getAllMoviesByGenre($id);
@@ -105,11 +128,19 @@ class movieController
 
             }
             else{
-                $this->view->showError();
+                $this->view->showError("No se encontraron peliculas con ese genero.");
             }
         } else {
-            $this->view->showError();
+            $this->view->showError("No se encontraron peliculas con ese genero");
         }
     }
-
+    function getAllMoviesByGenreWithId($id){
+        if (!empty($id)) {
+            $moviesByGenre = $this->model->getAllMoviesByGenre($id);
+            return $moviesByGenre;
+        } else {
+            $this->view->showError("Error al intentar borrar un genero");
+        }
 }
+}
+

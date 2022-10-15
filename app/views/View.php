@@ -29,11 +29,14 @@ class View{
         $this->smarty->assign('genres', $genres);
         $this->smarty->display('templates/searchPage.tpl');
     }
-    function showError(){
-        echo "funcion Error";
+    function showError(String $error){
+        $this->smarty->assign('error',$error);
+        $this->smarty->display('templates/showError.tpl');
     }
-    function successMessage(){
+    function successMessage($message){
+        $this->smarty->assign("message",$message);
         $this->smarty->display("templates/successMessage.tpl");
+        
     }
     function ShowAllMoviesByGenre($moviesByGenre){
         $this->smarty->assign('movies',$moviesByGenre);
@@ -44,8 +47,22 @@ class View{
         $this->smarty->display('templates/showOneMovie.tpl');
         
     }
+    function showOneGenre($genre){
+        $this->smarty->assign('genre',$genre);
+        $this->smarty->display('templates/showOneGenre.tpl');
+        
+    }
+    function showOneGenreForModify($genre){
+        $this->smarty->assign('genre',$genre);
+        $this->smarty->display('templates/showOneGenreForModify.tpl');
+        
+    }
     function showFormAddGenre(){
         $this->smarty->display('templates/FormAddGenre.tpl');
+    }
+    function showAllGenres($genres){
+        $this->smarty->assign('genres', $genres);        
+        $this->smarty->display('templates/showAllGenres.tpl');
     }
 }
 

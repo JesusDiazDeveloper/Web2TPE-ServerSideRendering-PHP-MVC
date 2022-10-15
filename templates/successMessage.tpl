@@ -1,5 +1,8 @@
+{include file='header.tpl'}
 
-{include file = 'header.tpl'}
-
-
-<h1> Se realizo con exito </h1>
+<div class="alert alert-success text-center" role="alert">
+    <div>
+        <h5>{$message}</h5>
+    </div>
+</div>
+{include file='footer.tpl'}

@@ -10,8 +10,11 @@
                 <li class="nav-item">
                     <a class="nav-link active text-white" aria-current="page" href="home">Home</a>
                 </li>
-                <li class="nav-item">
+X                <li class="nav-item">
                     <a class="nav-link text-white" href="searchMenu">Pelis por Genero</a>
+                </li>
+X                <li class="nav-item">
+                    <a class="nav-link text-white" href="showAllGenres">Generos</a>
                 </li>
 
                 {if !isset($smarty.session.USER_ID)}

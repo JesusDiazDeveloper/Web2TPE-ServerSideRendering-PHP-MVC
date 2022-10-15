@@ -49,11 +49,46 @@ switch ($params[0]) {
         $genres = $genreController->getAll();
         $controller->showOneItemForModify($id, $genres);
         break;
-    case 'modified':
-        $controller = new movieController;
+    case 'modifyGenre':
+        $genreController = new GenreController;
         $id = $params[1];
-        $controller->modifyItem($id);
+        $genreController->ShowOneGenreForModify($id);
         break;
+
+
+
+
+
+
+
+
+
+
+
+        case 'modified':
+            $controller = new movieController;
+            $id = $params[1];
+            $controller->modifyItem($id);
+            break;
+        case 'GenreModified':
+            $controller = new GenreController;
+            $id = $params[1];
+            $controller->modifyGenre($id);
+            break;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     case 'showOne':
         $controller = new movieController;
         $id = $params[1];
@@ -81,6 +116,26 @@ switch ($params[0]) {
         $controller = new GenreController();
         $controller->addNewGenre();
         break;
+        case 'showAllGenres':
+        //Agrega el genero a la base de datos
+        $controller = new GenreController();
+        $controller->showAllGenres();
+        break;
+        case 'deleteGenre':
+        //Agrega el genero a la base de datos
+        $movieController = new movieController;
+        $id = $params[1];
+        $products = $movieController->getAllMoviesByGenreWithId($id);
+        // var_dump($products);
+        $controller = new GenreController();
+        $genre = $params[1];
+        $controller->deleteGenreById($genre, $products);
+        break;
+        case 'showOneGenre':
+            $controller = new GenreController;
+            $id = $params[1];
+            $controller->ShowOneGenre($id);
+            break;
 
 
     default:
