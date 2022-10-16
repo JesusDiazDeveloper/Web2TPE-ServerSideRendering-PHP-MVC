@@ -54,17 +54,6 @@ switch ($params[0]) {
         $id = $params[1];
         $genreController->ShowOneGenreForModify($id);
         break;
-
-
-
-
-
-
-
-
-
-
-
         case 'modified':
             $controller = new movieController;
             $id = $params[1];
@@ -75,20 +64,6 @@ switch ($params[0]) {
             $id = $params[1];
             $controller->modifyGenre($id);
             break;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     case 'showOne':
         $controller = new movieController;
         $id = $params[1];
@@ -104,6 +79,9 @@ switch ($params[0]) {
         break;
     case 'validate':
         $authController = new AuthController();
+        if(empty($_POST)){
+            $authController->showError('Ingreso no permitido');
+        }
         $authController->validateUser();
         break;
     case 'addGenre':

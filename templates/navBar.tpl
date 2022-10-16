@@ -17,12 +17,12 @@ X                <li class="nav-item">
                     <a class="nav-link text-white" href="showAllGenres">Generos</a>
                 </li>
 
-                {if !isset($smarty.session.USER_ID)}
+                {if !isset($smarty.session.USER_ID)} 
                     {* Aca muestro si no hice sesion el boton login  *}
                     <li class="nav-item">
                         <a class="nav-link text-white " href="login">Login</a>
                     </li>
-                {else}
+                    {else}
                     {* Si esta seteado quiere decir que estoy logueado, me muestra el logout *}
                     <li class="nav-item dropdown ">
                         <a class="nav-link dropdown-toggle text-white" href="#" role="button"

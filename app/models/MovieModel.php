@@ -33,11 +33,16 @@ class MovieModel
 
     public function addNew($name, $image, $length, $director, $fk_genre_id)
     {
-        $fk_genre_id = intval($fk_genre_id);
-
+        $pathImg= $this->uploadImage($image);
         $query = $this->db->prepare("INSERT INTO peliculas ( movieName , movieImage, movieLength, director, fk_genre_id) VALUES (?, ?, ?, ?, ?)");
-        $query->execute([$name, $image, $length, $director, $fk_genre_id]);
+        $query->execute([$name, $pathImg, $length, $director, $fk_genre_id]);
         return $this->db->lastInsertId(); //nos devuelve el id del último elemento insertado
+    }
+
+    private function uploadImage($image){
+        $target='imgs/movies/'.uniqid().'.jpg';
+        move_uploaded_file($image, $target);
+        return $target;
     }
 
     function getOneItem($id)

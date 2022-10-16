@@ -13,5 +13,8 @@ class AuthView{
         $this->smarty->assign('error',$error);
         $this->smarty->display('templates/loginForm.tpl');
     }
-
+    function showError(String $error){
+        $this->smarty->assign('error',$error);
+        $this->smarty->display('templates/showError.tpl');
+    }
 }

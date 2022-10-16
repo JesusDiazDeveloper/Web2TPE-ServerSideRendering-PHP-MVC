@@ -40,7 +40,9 @@ class AuthController {
             } 
             }
     }
-    
+    function showError($message = null){
+        $this->view->showError($message);
+    }
     public function logout() {
         session_start();
         session_destroy();
