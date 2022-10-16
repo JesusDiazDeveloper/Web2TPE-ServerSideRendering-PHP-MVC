@@ -1,6 +1,6 @@
 {include file="header.tpl"}
 
-<form action="modified/{$movie->id_movie}"  method="POST" class="row g-3">
+<form action="modified/{$movie->id_movie}"  method="POST" class="row g-3"enctype="multipart/form-data">
     <div class="col-md-6">
         <label for="inputEmail4" class="form-label"></label>
     
@@ -20,8 +20,8 @@
     <div class="col-4">
         <label for="inputAddress" class="form-label"></label>
 
-        
-            <input name="image" type="text" value="{$movie->movieImage}"class="form-control"  placeholder="imagen" required>
+        <input name="image" type="file" id="imageToUpload" class="form-control"  placeholder="imagen" required>
+            {* <input name="image" type="text" value="{$movie->movieImage}"class="form-control"  placeholder="imagen" required> *}
     
     
         </div>

@@ -59,11 +59,12 @@ class MovieModel
 
     function modifyItem($id, $name, $image, $length, $director, $genre)
     {
-        $genre = intval($genre);
-        $id = intval($id);
+        $pathImg= $this->uploadImage($image);
+        // $genre = intval($genre);
+        // $id = intval($id);
 
         $query = $this->db->prepare("UPDATE peliculas SET movieName=?,movieImage=?,movieLength=?,director=?,fk_genre_id=? WHERE id_movie=?");
-        return $query->execute([$name, $image, $length, $director, $genre, $id]);
+        return $query->execute([$name, $pathImg, $length, $director, $genre, $id]);
 
     }
     function getAllMoviesByGenre($id)

@@ -78,28 +78,33 @@ class movieController
     }
     function modifyItem($id){
         $this->AuthHelper->checkLoggedIn();
-        if (!empty($id) && !empty($_POST['name']) && !empty($_POST['image']) && !empty($_POST['length'])
+        if (!empty($id) && !empty($_POST['name']) && !empty($_POST['length'])
             && !empty($_POST['director']) && !empty($_POST['fk_genre_id'])
         ) {
-            try{
-                $name = $_POST['name'];
-                $image = $_POST['image'];
-                $length = $_POST['length'];
-                $director = $_POST['director'];
-                $genre = $_POST['fk_genre_id'];
-    
-    
-                $result = $this->model->modifyItem($id, $name, $image, $length, $director, $genre);
-                
-                if($result){
-                    $this->view->successMessage("La modificacion se realizo con exito");
+            if($_FILES['image']['type'] == "image/jpg" || $_FILES['image']['type'] == "image/jpeg" || $_FILES['image']['type'] == "image/png" ) {
+                try{
+                    $name = $_POST['name'];
+                    $image = $_FILES['image']['tmp_name'];
+                    $length = $_POST['length'];
+                    $director = $_POST['director'];
+                    $genre = $_POST['fk_genre_id'];
+        
+        
+                    $result = $this->model->modifyItem($id, $name, $image, $length, $director, $genre);
+                    
+                    if($result){
+                        $this->view->successMessage("La modificacion se realizo con exito");
+                    }
+                    else{
+                        $this->view->showError("Ocurrio un error al intentar Modificar la pelicula");
+                    }
                 }
-                else{
-                    $this->view->showError("Ocurrio un error al intentar Modificar la pelicula");
+                catch(Exception){
+                    $this->view->showError("Nombre exitente en otra pelicula.");
                 }
             }
-            catch(Exception){
-                $this->view->showError("Nombre exitente en otra pelicula.");
+            else{
+                $this->view->showError("Formato de imagen no permitido.");   
             }
         }
         else{
