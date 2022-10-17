@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2022 a las 18:26:48
+-- Tiempo de generación: 17-10-2022 a las 18:48:36
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -37,6 +37,7 @@ CREATE TABLE `genero` (
 --
 
 INSERT INTO `genero` (`id_genre`, `genreName`) VALUES
+(32, 'aaaaa'),
 (26, 'Accion'),
 (27, 'Animacion'),
 (23, 'Drama'),
@@ -64,15 +65,15 @@ CREATE TABLE `peliculas` (
 --
 
 INSERT INTO `peliculas` (`id_movie`, `movieName`, `movieImage`, `movieLength`, `director`, `fk_genre_id`) VALUES
-(33, 'Batman', 'imgs/movies/634b63ef479b6.jpg', '2:20', 'Un director', 23),
-(35, 'Tierra de Osos', 'imgs/movies/634c2aeba6bce.jpg', '2:30', 'steven spilverg', 28),
+(33, 'Batman', 'imgs/movies/634c984776926.jpg', '2:20', 'Un director', 28),
+(35, 'Tierra de Osos', 'imgs/movies/634c7af227785.jpg', '2:30', 'steven spilverg', 28),
 (36, 'Pokemon', 'imgs/movies/634c2b12a722c.jpg', '2:50', 'Nashimoto kusamano', 27),
 (37, 'Mi pobre angelito', 'imgs/movies/634c2b486f551.jpg', '1:30', 'jim carrey', 23),
 (38, 'Scary Movie', 'imgs/movies/634c2b8146178.jpg', '1:35', 'ramon valdes', 29),
 (39, 'Como salir de bufalo', 'imgs/movies/634c2baa83eaa.jpg', '1:45', 'bob marley', 23),
 (40, 'Homebound', 'imgs/movies/634c2bd0233b0.jpg', '1:58', 'Holland ', 23),
 (41, 'El señor de los anillos', 'imgs/movies/634c2c2b4031d.jpg', '2:20', 'Bob Smith', 26),
-(42, 'Los 800', 'imgs/movies/634c2c62568f0.jpg', '2:30', 'Mishamoto mushashi', 26);
+(42, 'Los 800', 'imgs/movies/634c7bcd29e73.jpg', '2:30', 'Mishamoto mushashi', 28);
 
 -- --------------------------------------------------------
 
@@ -126,13 +127,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `genero`
 --
 ALTER TABLE `genero`
-  MODIFY `id_genre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_genre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `peliculas`
 --
 ALTER TABLE `peliculas`
-  MODIFY `id_movie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_movie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
